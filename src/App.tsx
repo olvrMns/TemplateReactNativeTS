@@ -8,19 +8,28 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeScreen } from './screens/home.screen';
 import { AboutScreen } from './screens/about.screen';
+import { DemoDBScreen } from './screens/demoDB.scren';
+import { config } from 'dotenv';
 
-const Stack = createNativeStackNavigator();
+export type DrawerParams = {
+  Home: undefined;
+  About: undefined;
+  DemoDB: undefined;
+}
+
+const Drawer = createDrawerNavigator<DrawerParams>();
+config();
 
 export default class App extends Component<any, any, any> {
   
-
   render(): ReactNode {
       return(
           <NavigationContainer>
-            <Stack.Navigator>
-              <Stack.Screen name='Home' options={{title: "Home"}} component={HomeScreen}/>
-              <Stack.Screen name='About' options={{title: "About"}} component={AboutScreen}/>
-            </Stack.Navigator>
+            <Drawer.Navigator initialRouteName='Home'>
+              <Drawer.Screen name='Home' options={{title: "Home"}} component={HomeScreen}/>
+              <Drawer.Screen name='About' options={{title: "About"}} component={AboutScreen}/>
+              <Drawer.Screen name='DemoDB' options={{title: "DemoDB"}} component={DemoDBScreen}/>
+            </Drawer.Navigator>
           </NavigationContainer>
       )
   }
