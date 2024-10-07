@@ -8,8 +8,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeScreen } from './screens/home.screen';
 import { AboutScreen } from './screens/about.screen';
-import { DemoDBScreen } from './screens/demoDB.scren';
-import { config } from 'dotenv';
+import { DemoDBScreen } from './screens/demoDB.screen';
 
 export type DrawerParams = {
   Home: undefined;
@@ -18,7 +17,6 @@ export type DrawerParams = {
 }
 
 const Drawer = createDrawerNavigator<DrawerParams>();
-config();
 
 export default class App extends Component<any, any, any> {
   

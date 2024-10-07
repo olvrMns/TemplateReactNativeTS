@@ -2,9 +2,9 @@
 ### **npx create-expo-app@latest -t (?)**
 - npm install typescript@5.3.3
 - npm install react-native-safe-area-context@4.10.5
-- npm install mysql2
+- npm install mysql2 **(?)**
 - npm install react-native-reanimated@3.10.1
-- npm install dotenv **(ALREADY HAS TYPES)**
+- npm install react-native-dotenv **(ALREADY HAS TYPES)**
 
 ##### NAVIGATION
 - npm install @react-navigation/native **(COMPONENT BASED ROUTINNG LIBRARY)**
