@@ -5,6 +5,7 @@
 - npm install mysql2 **(?)**
 - npm install react-native-reanimated@3.10.1
 - npm install react-native-dotenv **(ALREADY HAS TYPES)**
+- nom install axios **(ALREADY HAS TYPES)**
 
 ##### NAVIGATION
 - npm install @react-navigation/native **(COMPONENT BASED ROUTINNG LIBRARY)**
