@@ -5,6 +5,7 @@
 - npm install express
 - npm install bcryptjs
 - npm install @types/bcryptjs
+- npm install cors
 
 ## *NOT NEEDED*
 > - npm install jsonwebtoken
@@ -15,3 +16,4 @@
 - npm install --save-dev typescript
 - npm install --save-dev @types/express
 - npm install --save-dev @types/node
+- npm install --save-dev @types/cors
