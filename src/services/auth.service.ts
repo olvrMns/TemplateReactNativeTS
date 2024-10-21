@@ -1,6 +1,9 @@
 import { hash, genSalt, compare } from "bcryptjs";
 import { EntityInquisitor } from "../db/enityInquisitor";
 import { User } from "../entities/user.entity";
+import { RegexCode, RegexUtils } from "../utils/regex.util";
+import { Queries } from "../db/queries";
+import { APIError } from "../errors/abs.error";
 
 export class AuthService {
 
@@ -14,8 +17,15 @@ export class AuthService {
         return await compare(rawPassword, hashedPassword);
     }
 
-    public static async authenticate(usernameOrEmail: string, pwd: string) {
-        
+    public static async authenticateUser(usernameOrEmail: string, rawPassword: string): Promise<User | null> {
+        let user: User | null = null;
+        if (RegexUtils.testEmail(usernameOrEmail)) 
+            user  = await this.userInquisitor.getFirstFromQuery(Queries.getUserByCustomAttributeAndPwd.complete("email", usernameOrEmail));
+        else if (RegexUtils.testUsername(usernameOrEmail))
+            user = await this.userInquisitor.getFirstFromQuery(Queries.getUserByCustomAttributeAndPwd.complete("username", usernameOrEmail));
+        else throw APIError.otherError();
+        if (await this._comparePwd(rawPassword, user.pwd)) return user;
+        return null;
     }
 
 }

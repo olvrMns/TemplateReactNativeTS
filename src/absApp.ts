@@ -3,6 +3,7 @@ import Express, { Application, json } from 'express';
 import { Server } from 'http';
 import { crossOriginMiddleware } from './crossOrigin';
 import { router as authRouter } from './routes/auth.route';
+import { LOGGER } from './winstonLogger';
 
 export class App {
 
@@ -23,7 +24,7 @@ export class App {
     }
 
     public start(): void {
-        this.httpServer = this.application.listen(process.env.SERV_PORT, () => console.log(`Server start...`)); 
+        this.httpServer = this.application.listen(process.env.SERV_PORT, () => LOGGER.info(`Server start...`)); 
         this.setRoutes();
     }
 

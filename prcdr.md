@@ -7,6 +7,7 @@
 - npm install @types/bcryptjs
 - npm install cors
 - npm install http-status-codes
+- npm install winston
 
 - npm install --save-dev nodemon
 - npm install --save-dev ts-node
