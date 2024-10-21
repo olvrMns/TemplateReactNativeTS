@@ -1,9 +1,11 @@
+import { config } from 'dotenv';
+//config *BEFORE* Imports
+config({path: [".serv.env", ".db.env"]});
 import Express, { Application, json } from 'express';
 import { Server } from 'http';
 import { crossOriginMiddleware } from './crossOrigin';
 import { router as authRouter } from './routes/auth.route';
 import { LOGGER } from './winstonLogger';
-import { config } from 'dotenv';
 
 export class App {
 
@@ -13,8 +15,6 @@ export class App {
     private constructor() {}
 
     public static getInstance(): App {
-        //NEEDS TO BE FIXED
-        config({path: [".serv.env"]});
         return new App();
     }
 

@@ -4,11 +4,7 @@ import { User } from "../entities/user.entity";
 import { RegexCode, RegexUtils } from "../utils/regex.util";
 import { Queries } from "../db/queries";
 import { APIError } from "../errors/abs.error";
-import { config } from "dotenv";
 import { AuthError } from "../errors/auth.error";
-
-//NEEDS TO BE FIXED
-config({path: [".db.env"]});
 
 export class AuthService {
 
