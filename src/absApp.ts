@@ -10,7 +10,7 @@ export class App {
     private application: Application = Express();
     private httpServer: Server | null = null;
 
-    private App() {}
+    private constructor() {}
 
     public static getInstance(): App {
         Dotenv.config({path: [".db.env", ".serv.env"]});
