@@ -22,7 +22,13 @@ export default class App extends Component<any, any, any> {
   render(): ReactNode {
       return(
           <NavigationContainer>
-            <Drawer.Navigator initialRouteName='Login'>
+            <Drawer.Navigator initialRouteName='Login' screenOptions={{
+              drawerActiveBackgroundColor: "#3dad40",
+              headerTintColor: "#5da6a4",
+              headerStyle: {backgroundColor: "#2f7050"},
+              drawerStyle: {backgroundColor: "#73a65d"}
+            }}>
+
               <Drawer.Screen name='Home' options={{title: "Home"}} component={HomeScreen}/>
               <Drawer.Screen name='About' options={{title: "About"}} component={AboutScreen}/>
               <Drawer.Screen name='DemoDB' options={{title: "DemoDB"}} component={DemoDBScreen}/>
