@@ -3,7 +3,6 @@ import { config } from 'dotenv';
 config({path: [".serv.env", ".db.env"]});
 import Express, { Application, json } from 'express';
 import { Server } from 'http';
-import { crossOriginMiddleware } from './crossOrigin';
 import { router as authRouter } from './routes/auth.route';
 import { LOGGER } from './winstonLogger';
 
@@ -21,7 +20,6 @@ export class App {
     public setRoutes() {
         this.application.use(json());
         this.application.use(authRouter);
-        this.application.use(crossOriginMiddleware);
     }
 
     public start(): void {

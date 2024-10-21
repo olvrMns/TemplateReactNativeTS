@@ -21,14 +21,13 @@ export class Query extends String {
     public complete(...values: string[]): String {
         let cloneQuery: String = this;
         let cloneReplacementIndexes: number[] = [...this.replacementIndexes];
-        if (values.length == cloneReplacementIndexes.length) {
+        if (values.length == cloneReplacementIndexes.length) 
             for (let elem = 0; elem < this.replacementIndexes.length; elem++) {
                 let sub: string = cloneQuery.substring(0, cloneReplacementIndexes[elem]);
                 sub = sub.concat(values[elem]);
                 cloneQuery = sub.concat(cloneQuery.substring(cloneReplacementIndexes[elem] + 1));
                 if (elem + 1 != cloneReplacementIndexes.length) cloneReplacementIndexes[elem + 1] = cloneReplacementIndexes[elem + 1] + (values[elem].length - 1); 
             }
-        }
         return cloneQuery;
     }
 
