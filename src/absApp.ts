@@ -13,7 +13,7 @@ export class App {
     private App() {}
 
     public static getInstance(): App {
-        Dotenv.config({path: ["./.db.env", "./.serv.env"]});
+        Dotenv.config({path: [".db.env", ".serv.env"]});
         return new App();
     }
 

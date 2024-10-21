@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS user_address(
 
 ALTER TABLE user_address ADD FOREIGN KEY (userId) REFERENCES user(id);
 
-INSERT INTO user(username, email, firstName, lastName, pwd) values ('testUser1', 'testUser1@gmail.com', 'test1', 'test1', 'abc-123');
-INSERT INTO user(username, email, firstName, lastName, pwd) values ('testUser2', 'testUser2@gmail.com', 'test2', 'test2', 'abc-123');
+INSERT INTO user(username, email, firstName, lastName, pwd) values ('testUser1', 'testUser1@gmail.com', 'test1', 'test1', '$2a$10$ZrRpkqJLWG9MxBLrRuoEb.AEyvh15TQJUO1j160Jv1MxD9FUI/lcW');
+INSERT INTO user(username, email, firstName, lastName, pwd) values ('testUser2', 'testUser2@gmail.com', 'test2', 'test2', '$2a$10$ZrRpkqJLWG9MxBLrRuoEb.AEyvh15TQJUO1j160Jv1MxD9FUI/lcW');
 
 
 
