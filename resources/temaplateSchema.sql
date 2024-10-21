@@ -7,9 +7,10 @@ CREATE TABLE IF NOT EXISTS user(
     id INT AUTO_INCREMENT NOT NULL,
     username VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
+    bio TEXT(5000) DEFAULT '',
     firstName VARCHAR(50) NOT NULL,
     lastName VARCHAR(50) NOT NULL,
-    pwd VARCHAR(16000) NOT NULL,
+    pwd VARCHAR(1000) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -28,8 +29,8 @@ CREATE TABLE IF NOT EXISTS user_address(
 
 ALTER TABLE user_address ADD FOREIGN KEY (userId) REFERENCES user(id);
 
-INSERT INTO user(username, email, firstName, lastName, pwd) values ('testUser1', 'testUser1@gmail.com', 'test1', 'test1', '$2a$10$ZrRpkqJLWG9MxBLrRuoEb.AEyvh15TQJUO1j160Jv1MxD9FUI/lcW');
-INSERT INTO user(username, email, firstName, lastName, pwd) values ('testUser2', 'testUser2@gmail.com', 'test2', 'test2', '$2a$10$ZrRpkqJLWG9MxBLrRuoEb.AEyvh15TQJUO1j160Jv1MxD9FUI/lcW');
+INSERT INTO user(username, email, bio, firstName, lastName, pwd) values ('testUser1', 'testUser1@gmail.com', 'AAAAAAHHHHH','test1', 'test1', '$2a$10$ZrRpkqJLWG9MxBLrRuoEb.AEyvh15TQJUO1j160Jv1MxD9FUI/lcW');
+INSERT INTO user(username, email, bio, firstName, lastName, pwd) values ('testUser2', 'testUser2@gmail.com', 'AWFAOFNAFAWMFWALFNAWAWNFAWINFAI','test2', 'test2', '$2a$10$ZrRpkqJLWG9MxBLrRuoEb.AEyvh15TQJUO1j160Jv1MxD9FUI/lcW');
 
 
 

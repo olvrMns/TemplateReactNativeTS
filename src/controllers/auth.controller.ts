@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import { AuthService } from "../services/auth.service";
-import { User } from "../entities/user.entity";
 import { LOGGER } from "../winstonLogger";
+import { UserInformation } from "../interfaces/userInformation.entity";
 
 export class AuthController {
 
@@ -13,7 +13,7 @@ export class AuthController {
     public static async authenticate(request: Request, response: Response): Promise<void> {
         try {
             LOGGER.alert("Authentication request received........");
-            let user: User | null = await AuthService.authenticateUser(request.body.username, request.body.pwd);
+            let user: UserInformation | null = await AuthService.authenticateUser(request.body.username, request.body.pwd);
             response.status(StatusCodes.OK).send(user);
         } catch (err: unknown) {
             LOGGER.error(String(err));
