@@ -5,6 +5,7 @@ use templateDev;
 DROP TABLE IF EXISTS user;
 CREATE TABLE IF NOT EXISTS user(
     id INT AUTO_INCREMENT NOT NULL,
+    username VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
     firstName VARCHAR(50) NOT NULL,
     lastName VARCHAR(50) NOT NULL,
@@ -26,6 +27,9 @@ CREATE TABLE IF NOT EXISTS user_address(
 );
 
 ALTER TABLE user_address ADD FOREIGN KEY (userId) REFERENCES user(id);
+
+INSERT INTO user(username, email, firstName, lastName, pwd) values ('testUser1', 'testUser1@gmail.com', 'test1', 'test1', 'abc-123');
+INSERT INTO user(username, email, firstName, lastName, pwd) values ('testUser2', 'testUser2@gmail.com', 'test2', 'test2', 'abc-123');
 
 
 
