@@ -47,4 +47,12 @@ export class EntityInquisitor<T> {
         return this.jsonUtils.toObject(res?.[0]);
     }
 
+    // public async getArray(attributeName: string, value: string): Promise<T[] | null> {
+    //     return null;
+    // }
+
+    // public async getFirst(attributeName: string, value: string): Promise<T | null> {
+    //     return null;
+    // }
+
 }
