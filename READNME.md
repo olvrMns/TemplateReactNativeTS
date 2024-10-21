@@ -2,9 +2,10 @@
 ### **npx create-expo-app@latest -t (?)**
 - npm install typescript@5.3.3
 - npm install react-native-safe-area-context@4.10.5
-- npm install mysql2 **(?)**
 - npm install react-native-reanimated@3.10.1
-- npm install react-native-dotenv **(ALREADY HAS TYPES)**
+> - npm install react-native-dotenv **(ALREADY HAS TYPES)** 
+>    - [doc](https://www.npmjs.com/package/react-native-dotenv)
+>    - [defaultExpoEnv](https://docs.expo.dev/guides/environment-variables/)
 - nom install axios **(ALREADY HAS TYPES)**
 
 ##### NAVIGATION
