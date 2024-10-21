@@ -37,12 +37,12 @@ export class EntityInquisitor<T> {
         return res;
     }
 
-    public async getArrayFromQuery(query: String): Promise<T[] | null> {
+    public async getArrayFromQuery(query: String): Promise<T[]> {
         let res: [QueryResult, FieldPacket[]] | undefined = await this.execute(query);
         return this.jsonUtils.toArray(res?.[0]);
     }
 
-    public async getFirstFromQuery(query: String): Promise<T | null> {
+    public async getFirstFromQuery(query: String): Promise<T> {
         let res: [QueryResult, FieldPacket[]] | undefined = await this.execute(query);
         return this.jsonUtils.toObject(res?.[0]);
     }
