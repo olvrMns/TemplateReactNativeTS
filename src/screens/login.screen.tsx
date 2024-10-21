@@ -1,5 +1,5 @@
 import { Component, ReactNode } from "react";
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { GestureResponderEvent, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 
@@ -17,17 +17,35 @@ export class LoginScreen extends Component<any, LoginScreenState, any> {
         }
     }
 
+    private handleUsernameOrEmailInput(text: string) {
+        this.setState({usernameOrEmailInput: text});
+        console.log(this.state.usernameOrEmailInput);
+    }
+
+    private handlePasswordInput(text: string) {
+        this.setState({passwordInput: text});
+        console.log(this.state.passwordInput);
+    }
+
+    private handleSend(event: GestureResponderEvent) {
+        console.log("slt");
+    }
+
     render(): ReactNode {
         return(
-            <SafeAreaView>
+            <SafeAreaView className="flex-1 bg-green-300">
                 <Text>LOGIN PAGE</Text>
 
                 <View>
-                    <TextInput value={this.state.usernameOrEmailInput}/>
+                    <TextInput 
+                    value={this.state.usernameOrEmailInput} 
+                    onChangeText={(text: string) => this.handleUsernameOrEmailInput(text)}/>
 
-                    <TextInput value={this.state.passwordInput} secureTextEntry={true}/>
+                    <TextInput 
+                    value={this.state.passwordInput} 
+                    onChangeText={(text: string) => this.handlePasswordInput(text)} secureTextEntry={true}/>
 
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={(event: GestureResponderEvent) => this.handleSend(event)}>
                         <Text>Send</Text>
                     </TouchableOpacity>
                 </View>

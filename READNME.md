@@ -8,6 +8,10 @@
 > - [npm install react-native-dotenv](https://www.npmjs.com/package/react-native-dotenv) **(ALREADY HAS TYPES)** 
 >    - [defaultExpoEnv](https://docs.expo.dev/guides/environment-variables/)
 - nom install axios **(ALREADY HAS TYPES)**
+- [npm install nativewind](https://blog.logrocket.com/getting-started-nativewind-tailwind-react-native/)
+    - [*npm install --save-dev tailwindcss@3.3.2*](https://soulemanou-kunchiefuh-babanou.medium.com/how-install-tailwind-css-in-a-react-native-typescript-project-645a22150e53) 
+    - *VSCode extenson => TailwindCSS Intelisence*
+    - [className FIX](https://stackoverflow.com/questions/77817553/typescript-error-with-nativewind-in-react-native-no-overload-matches-this-call)
 
 ##### NAVIGATION
 - npm install @react-navigation/native **(COMPONENT BASED ROUTINNG LIBRARY)**

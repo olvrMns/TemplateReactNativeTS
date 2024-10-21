@@ -2,7 +2,6 @@ import { ReactNode, RefObject, useRef } from "react";
 import { Dimensions, Text, TouchableOpacity } from "react-native";
 import Animated, { SharedValue, useSharedValue, withTiming } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { style } from "../styles/coloredBar.style";
 
 
 interface ColoredBarProperties {
@@ -27,16 +26,16 @@ export const ColoredBar = (properties: ColoredBarProperties): ReactNode => {
     }
 
     return(
-        <SafeAreaView style={style.safeAreaViewStyle}>
+        <SafeAreaView>
 
-            <Animated.View style={[style.barStyle, {width: barWidth}]}></Animated.View>
+            <Animated.View></Animated.View>
 
-            <TouchableOpacity style={style.buttonStyle} onPress={() => incrementBar()}>
-                <Text style={style.buttonStyleText}>Increment</Text>
+            <TouchableOpacity onPress={() => incrementBar()}>
+                <Text>Increment</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={style.buttonStyle} onPress={() => decrementBar()}>
-                <Text style={style.buttonStyleText}>Decrement</Text>
+            <TouchableOpacity onPress={() => decrementBar()}>
+                <Text>Decrement</Text>
             </TouchableOpacity>
 
         </SafeAreaView>
