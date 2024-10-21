@@ -4,10 +4,15 @@ import { User } from "../entities/user.entity";
 import { RegexCode, RegexUtils } from "../utils/regex.util";
 import { Queries } from "../db/queries";
 import { APIError } from "../errors/abs.error";
+import { config } from "dotenv";
+import { AuthError } from "../errors/auth.error";
+
+//NEEDS TO BE FIXED
+config({path: [".db.env"]});
 
 export class AuthService {
 
-    private static userInquisitor: EntityInquisitor<User> = new EntityInquisitor<User>();
+    private static userInquisitor: EntityInquisitor<User> = new EntityInquisitor<User>({database: process.env.DB_NAME});
 
     public static async _hashPwd(rawPassword: string): Promise<string> {
         return await hash(rawPassword, await genSalt(parseInt(process.env._HASH_ROUNDS as string)));
@@ -20,12 +25,12 @@ export class AuthService {
     public static async authenticateUser(usernameOrEmail: string, rawPassword: string): Promise<User | null> {
         let user: User | null = null;
         if (RegexUtils.verify(usernameOrEmail, RegexCode.EMAIL)) 
-            user  = await this.userInquisitor.getFirstFromQuery(Queries.getUserByCustomAttributeAndPwd.complete("email", usernameOrEmail));
-        else if (RegexUtils.verify(usernameOrEmail, RegexCode.USERNAME))
-            user = await this.userInquisitor.getFirstFromQuery(Queries.getUserByCustomAttributeAndPwd.complete("username", usernameOrEmail));
+            user  = await this.userInquisitor.getFirstFromQuery(Queries.getUserByCustomAttribute.complete("email", usernameOrEmail));
+        else if (RegexUtils.verify(usernameOrEmail, RegexCode.USERNAME)) 
+            user = await this.userInquisitor.getFirstFromQuery(Queries.getUserByCustomAttribute.complete("username", usernameOrEmail));
         else throw APIError.debugError();
         if (await this._comparePwd(rawPassword, user.pwd)) return user;
-        return null;
+        else throw AuthError.credentialsError();
     }
 
 }

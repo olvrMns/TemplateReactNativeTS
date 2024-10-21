@@ -1,9 +1,9 @@
-import Dotenv from 'dotenv';
 import Express, { Application, json } from 'express';
 import { Server } from 'http';
 import { crossOriginMiddleware } from './crossOrigin';
 import { router as authRouter } from './routes/auth.route';
 import { LOGGER } from './winstonLogger';
+import { config } from 'dotenv';
 
 export class App {
 
@@ -13,14 +13,15 @@ export class App {
     private constructor() {}
 
     public static getInstance(): App {
-        Dotenv.config({path: [".db.env", ".serv.env"]});
+        //NEEDS TO BE FIXED
+        config({path: [".serv.env"]});
         return new App();
     }
 
     public setRoutes() {
         this.application.use(json());
         this.application.use(authRouter);
-        //this.application.use(crossOriginMiddleware);
+        this.application.use(crossOriginMiddleware);
     }
 
     public start(): void {

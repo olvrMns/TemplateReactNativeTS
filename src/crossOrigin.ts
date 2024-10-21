@@ -1,6 +1,5 @@
 import Cors, { CorsOptions } from "cors";
 
-
 /**
  * @returns express middleware callback (request, response, next) => void
  */

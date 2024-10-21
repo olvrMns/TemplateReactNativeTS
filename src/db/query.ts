@@ -20,7 +20,7 @@ export class Query extends String {
 
     public complete(...values: string[]): String {
         let cloneQuery: String = this;
-        let cloneReplacementIndexes: number[] = this.replacementIndexes;
+        let cloneReplacementIndexes: number[] = [...this.replacementIndexes];
         if (values.length == cloneReplacementIndexes.length) {
             for (let elem = 0; elem < this.replacementIndexes.length; elem++) {
                 let sub: string = cloneQuery.substring(0, cloneReplacementIndexes[elem]);

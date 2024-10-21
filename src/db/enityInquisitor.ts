@@ -1,29 +1,33 @@
 import { ConnectionOptions, createConnection, Connection, RowDataPacket, QueryResult, FieldPacket } from 'mysql2/promise';
 import { JSONUtils } from '../utils/json.util';
 
+export interface CustomConnectionOptions extends ConnectionOptions {
+    database: string | undefined;
+}
+
 export class EntityInquisitor<T> {
 
     private connection: Connection | undefined = undefined;
     private connectionOptions: ConnectionOptions | undefined = undefined;
     private jsonUtils: JSONUtils<T> = new JSONUtils<T>();
 
-    public constructor() {
+    public constructor(options: CustomConnectionOptions) {
         this.setConnectionOptions({
-            user: process.env.DB_USER,
-            password: process.env.DB_PASSWORD,
-            database: process.env.DB_NAME,
-            host: process.env.DB_HOST,
-            port: parseInt(process.env.DB_PORT as string),
+            user: options.user ? options.user : "root",
+            password: options.password ? options.password : "",
+            database: options.database,
+            host: options.host ? options.host : "localhost",
+            port: options.port ? options.port : 3306,
             rowsAsArray: false
         });
     }
 
-    public setConnectionOptions(options: ConnectionOptions): void {
+    public setConnectionOptions(options: CustomConnectionOptions): void {
         this.connectionOptions = options;
     }
 
     public async openConnection(): Promise<void> {
-        this.connection = await createConnection(this.connectionOptions as ConnectionOptions);
+        this.connection = await createConnection(this.connectionOptions as CustomConnectionOptions);
     }
 
     public async closeConnection(): Promise<void> {
@@ -43,8 +47,8 @@ export class EntityInquisitor<T> {
     }
 
     public async getFirstFromQuery(query: String): Promise<T> {
-        let res: [QueryResult, FieldPacket[]] | undefined = await this.execute(query);
-        return this.jsonUtils.toObject(res?.[0]);
+        let res: T[] = await this.getArrayFromQuery(query);
+        return res[0];
     }
 
     // public async getArray(attributeName: string, value: string): Promise<T[] | null> {
