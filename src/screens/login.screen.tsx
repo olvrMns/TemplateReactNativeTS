@@ -5,6 +5,7 @@ import { Fetcher } from "../axios/absAxios";
 import { UserInformation } from "../entities/userInformation.entity";
 import { Endpoints } from "../axios/endpoints";
 import { LabelInputField } from "../components/labelInputField.component";
+import { AcceptedAuthenticationResponse } from "../axios/authResponses";
 
 
 export interface LoginScreenState {
@@ -32,12 +33,9 @@ export class LoginScreen extends Component<any, LoginScreenState, any> {
     }
 
     private async handleSend(event: GestureResponderEvent): Promise<void> {
-        let res: UserInformation | null = await new Fetcher<UserInformation>().getOne({
-            endpoint: Endpoints.LOGIN,
-            body: {
-                username: this.state.usernameOrEmailInput,
-                pwd: this.state.passwordInput
-            }
+        await new Fetcher<AcceptedAuthenticationResponse>().getOne({endpoint: Endpoints.LOGIN, body: { username: this.state.usernameOrEmailInput, pwd: this.state.passwordInput}})
+        .then((response) => {
+            console.log(response)
         })
     }
 
