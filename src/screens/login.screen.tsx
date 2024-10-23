@@ -4,11 +4,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Fetcher } from "../axios/absAxios";
 import { UserInformation } from "../entities/userInformation.entity";
 import { Endpoints } from "../axios/endpoints";
+import { LabelInputField } from "../components/labelInputField.component";
 
 
 export interface LoginScreenState {
     usernameOrEmailInput: string,
-    passwordInput: string
+    passwordInput: string,
+    feedbackMessage: string
 }
 
 export class LoginScreen extends Component<any, LoginScreenState, any> {
@@ -16,50 +18,42 @@ export class LoginScreen extends Component<any, LoginScreenState, any> {
         super(properties)
         this.state = {
             usernameOrEmailInput: "",
-            passwordInput: ""
+            passwordInput: "",
+            feedbackMessage: ""
         }
     }
 
     private handleUsernameOrEmailInput(text: string): void {
         this.setState({usernameOrEmailInput: text});
-        console.log(this.state.usernameOrEmailInput);
     }
 
     private handlePasswordInput(text: string): void {
         this.setState({passwordInput: text});
-        console.log(this.state.passwordInput);
     }
 
     private async handleSend(event: GestureResponderEvent): Promise<void> {
-        console.log(await new Fetcher<UserInformation>().getOne({
+        let res: UserInformation | null = await new Fetcher<UserInformation>().getOne({
             endpoint: Endpoints.LOGIN,
             body: {
-                username: "testUser1",
-                pwd: "abc-12"
-            },
-            method: "post"
-        }));
+                username: this.state.usernameOrEmailInput,
+                pwd: this.state.passwordInput
+            }
+        })
     }
 
     render(): ReactNode {
         return(
             <SafeAreaView className="flex-1 bg-green-400 items-center">
-                <Text className="text-4xl text-white">LOGIN PAGE</Text>
+                <Text className="text-4xl text-white">LOGIN</Text>
 
                 <View className="items-center border-solid border-2 border-white p-3 rounded-md bg-green-300">
-                    <TextInput 
-                    value={this.state.usernameOrEmailInput} 
-                    onChangeText={(text: string) => this.handleUsernameOrEmailInput(text)}
-                    className="bg-red-400 w-80 mt-4 rounded-md h-10 p-1"/>
 
-                    <TextInput 
-                    value={this.state.passwordInput} 
-                    onChangeText={(text: string) => this.handlePasswordInput(text)} secureTextEntry={true}
-                    className="bg-red-400 w-80 mt-4 mb-4 rounded-md h-10 p-1"/>
+                    <LabelInputField labelName="Username: " value={this.state.usernameOrEmailInput} onChangeTextCallback={(text: string) => this.handleUsernameOrEmailInput(text)}/>
+                    <LabelInputField labelName="Password: " value={this.state.passwordInput} onChangeTextCallback={(text: string) => this.handlePasswordInput(text)} secured={true}/>
 
-                    <View className="mt-20">
+                    <View className="mt-10">
                         <TouchableOpacity onPress={(event: GestureResponderEvent) => this.handleSend(event)} className="bg-red-400 w-20 h-20 rounded-full items-center mt-10">
-                            <Text className="text-white m-auto">Send</Text>
+                            <Text className="text-white m-auto">Login</Text>
                         </TouchableOpacity>
                     </View>
 

@@ -1,10 +1,9 @@
 import fetch, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { Endpoints } from "./endpoints";
+import { Endpoints, EndpointsMetadata } from "./endpoints";
 
 export interface FetchOptions {
     endpoint: Endpoints;
     body?: any;
-    method: "post" | "get" | "put" | "patch"
 }
 
 export class Fetcher<T> {
@@ -21,8 +20,8 @@ export class Fetcher<T> {
         try {
             let res: AxiosResponse = await fetch({
                 data: options.body ? options.body : undefined,
-                baseURL: process.env.DATA_URL + options.endpoint,
-                method: options.method
+                baseURL: process.env.DATA_URL + EndpointsMetadata[options.endpoint].endpoint,
+                method: EndpointsMetadata[options.endpoint].method
             });
             return res.data;
         } catch (err: unknown) {
