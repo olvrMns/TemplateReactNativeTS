@@ -9,7 +9,11 @@ import { UserInformation } from "../interfaces/userInformation.entity";
 
 export class AuthService {
 
-    private static userInquisitor: EntityInquisitor<User> = new EntityInquisitor<User>({database: process.env.DB_NAME});
+    private static userInquisitor: EntityInquisitor<User> = new EntityInquisitor<User>({
+        database: process.env.DB_NAME,
+        password: process.env.DB_PWD,
+        port: parseInt(process.env.DB_PORT as string)
+    });
 
     public static async _hashPwd(rawPassword: string): Promise<string> {
         return await hash(rawPassword, await genSalt(parseInt(process.env._HASH_ROUNDS as string)));

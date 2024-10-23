@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS user(
     id INT AUTO_INCREMENT NOT NULL,
     username VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
-    bio TEXT(5000) DEFAULT '',
+    bio TEXT(5000),
     firstName VARCHAR(50) NOT NULL,
     lastName VARCHAR(50) NOT NULL,
     pwd VARCHAR(1000) NOT NULL,

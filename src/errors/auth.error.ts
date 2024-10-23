@@ -11,7 +11,7 @@ export class AuthError extends APIError {
     }
 
     public static credentialsError(): AuthError {
-        return new this("Login error!");
+        return new this("Authentication rejected");
     }
 
 }
