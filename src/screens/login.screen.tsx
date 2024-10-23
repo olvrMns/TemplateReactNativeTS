@@ -1,6 +1,9 @@
 import { Component, ReactNode } from "react";
 import { GestureResponderEvent, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Fetcher } from "../axios/absAxios";
+import { UserInformation } from "../entities/userInformation.entity";
+import { Endpoints } from "../axios/endpoints";
 
 
 export interface LoginScreenState {
@@ -28,7 +31,14 @@ export class LoginScreen extends Component<any, LoginScreenState, any> {
     }
 
     private async handleSend(event: GestureResponderEvent): Promise<void> {
-        console.log("slt");
+        console.log(await new Fetcher<UserInformation>().getOne({
+            endpoint: Endpoints.LOGIN,
+            body: {
+                username: "testUser1",
+                pwd: "abc-12"
+            },
+            method: "post"
+        }));
     }
 
     render(): ReactNode {

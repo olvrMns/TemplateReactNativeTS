@@ -1,0 +1,14 @@
+let entity: T | null = null;
+        await fetch({
+            data: options.body ? options.body : undefined,
+            baseURL: process.env.DATA_URL + options.endpoint,
+            method: options.method
+        }).then((response: AxiosResponse) => {
+            if (response.data) entity = response.data;
+            else console.log("non");
+            return null;
+;        }).catch(err => {
+            console.log("err: " + err);
+            return null;
+        })
+        return entity;
