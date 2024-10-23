@@ -3,15 +3,19 @@ import { APIError } from "./abs.error";
 export class AuthError extends APIError {
 
     public static notAuthorizedError(): AuthError {
-        return new this("Not authorized!");
+        return new this("Not authorized.");
     }
 
     public static notAuthenticatedError(): AuthError {
-        return new this("Not authenticated!");
+        return new this("Not authenticated.");
     }
 
     public static credentialsError(): AuthError {
-        return new this("Authentication rejected");
+        return new this("Authentication rejected.");
+    }
+
+    public static otherError() {
+        return new this("Something unexptected happened during the authentication process.");
     }
 
 }

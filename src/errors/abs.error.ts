@@ -4,10 +4,6 @@ export class APIError extends Error {
         super(message);
     }
 
-    public static otherError() {
-        return new this("Something unexptected happened during the authentication process!");
-    }
-
     public static debugError() {
         return new this("Unexpected.....................");
     }
