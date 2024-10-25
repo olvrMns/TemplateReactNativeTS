@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import { UserInformation } from "../interfaces/userInformation.entity";
-import { AuthService } from "../services/auth/auth.service";
-import { LOGGER } from "../winstonLogger";
-import { AcceptedAuthenticationResponse, AuthenticationStateResponse } from "../services/auth/authResponse";
 import { AuthError } from "../errors/auth.error";
+import { AcceptedAuthenticationResponse } from "../interfaces/acceptedAuthenticationResponse.interface"; 
+import { UserInformation } from "../interfaces/userInformation.interface";
+import { AuthService } from "../services/auth.service";
+import { LOGGER } from "../winstonLogger";
+import { AuthenticationStateResponse } from "../interfaces/authenticationStateResponse.interface";
+import { UserInformationEntity } from "../entities/userInformation.entity";
 
 export class AuthController {
 
@@ -16,10 +18,7 @@ export class AuthController {
             LOGGER.alert("Authentication request received.");
             let userInformation: UserInformation = await AuthService.authenticateUser(request.body.username, request.body.pwd);
             if (userInformation) {
-                let res: AcceptedAuthenticationResponse = {
-                    accessToken: await AuthService.createToken(userInformation),
-                    refreshToken: await AuthService.createToken(userInformation, parseInt(process.env.REFRESH_EXPIRES_IN as string))
-                }
+                let res: AcceptedAuthenticationResponse = await AuthService.getAcceptedAuthResponse(userInformation);
                 LOGGER.alert("Authentication request validated.");
                 response.status(StatusCodes.OK).send(res);
             } else throw AuthError.otherError();
@@ -30,13 +29,16 @@ export class AuthController {
     }
 
     /**
-     * @sends authenticationState, AccessToken?, RefreshToken?
+     * @sends authenticationState
      */
-    public static async isAuthenticated(request: Request, response: Response): Promise<void> {
+    public static async validateAuthentication(request: Request, response: Response): Promise<void> {
         try {
-
+            LOGGER.alert("Authentication state request received.");
+            let { accessToken, refreshToken } = request.body;
+            response.status(StatusCodes.OK).send(await AuthService.getAuthenticationState({accessToken: accessToken, refreshToken: refreshToken}));
         } catch (err: unknown) {
-
+            LOGGER.error(String(err));
+            response.sendStatus(StatusCodes.BAD_REQUEST); 
         }
     }
 

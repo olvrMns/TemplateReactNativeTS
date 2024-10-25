@@ -20,9 +20,9 @@ export class App {
 
     public setRoutes() {
         this.application.use(json());
-        this.application.use(Cors({
-            origin: process.env.AUTHORIZED_ORIGIN,
-        }))
+        // this.application.use(Cors({
+        //     origin: process.env.AUTHORIZED_ORIGIN,
+        // }))
         this.application.use(authRouter);
     }
 

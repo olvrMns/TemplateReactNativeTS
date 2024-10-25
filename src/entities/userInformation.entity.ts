@@ -1,6 +1,6 @@
-import { UserInformation } from "../interfaces/userInformation.entity";
+import { UserInformation } from "../interfaces/userInformation.interface";
 
-export class UserInformationEntity implements UserInformation{
+export class UserInformationEntity implements UserInformation {
 
     public username: string;
     public email: string;
