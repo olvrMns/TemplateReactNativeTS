@@ -1,28 +1,36 @@
 # npm install
 
-- npm install dotenv
-- npm install mysql2
-- npm install express
-- npm install bcryptjs
-- npm install cors
-- npm install http-status-codes
-- npm install winston
-- npm install jsonwebtoken
+- dotenv
+- mysql2
+- express
+- bcryptjs
+- cors
+- http-status-codes
+- winston
+- jsonwebtoken
 
-- npm install --save-dev @types/bcryptjs
-- npm install --save-dev @types/jsonwebtoken
-- npm install --save-dev nodemon
-- npm install --save-dev ts-node
-- npm install --save-dev typescript
-- npm install --save-dev @types/express
-- npm install --save-dev @types/node
-- npm install --save-dev @types/cors
+- --save-dev nodemon
+- --save-dev ts-node
+- --save-dev typescript
+- --save-dev @types/bcryptjs
+- --save-dev @types/jsonwebtoken
+- --save-dev @types/express
+- --save-dev @types/node
+- --save-dev @types/cors
 
-### SET IN .env
+> ### SET IN .env
+> ##### DB
+> *DB_USER=*
 > *DB_NAME=*
 > *DB_PWD=*
 > *DB_PORT=*
+> *DB_HOST=*
+
+> ##### SERVER
 > *SERV_PORT=*
+> *_HASH_ROUNDS=*
+
+> ##### TOKEN
 > *PK=*
 > *EXPIRES_IN=*
 > *REFRESH_EXPIRES_IN=*

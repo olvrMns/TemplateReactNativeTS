@@ -4,5 +4,6 @@ export interface UserInformation {
     email: string,
     bio: string,
     firstName: string,
-    lastName: string
+    lastName: string,
+    imagePath: string | null
 }

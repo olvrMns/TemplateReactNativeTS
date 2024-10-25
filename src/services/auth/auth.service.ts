@@ -33,14 +33,14 @@ export class AuthService {
             user = await this.userInquisitor.getFirstFromQuery(Queries.getUserByCustomAttribute.complete("username", usernameOrEmail));
         else throw APIError.debugError();
         if (await this._comparePwd(rawPassword, user.pwd)) 
-            return UserInformationEntity.getInstance(user.username, user.email, user.bio, user.firstName, user.lastName)
+            return UserInformationEntity.getInstance(user.username, user.email, user.bio, user.firstName, user.lastName, user.imagePath);
         else throw AuthError.credentialsError();
     }
 
     public static createToken(user: UserInformation, expires: number = parseInt(process.env.EXPIRES_IN as string)): Promise<string> {
         return new Promise((resolve, reject) => {
             sign(
-                {userInformation: UserInformationEntity.getInstance(user.username, user.email, user.bio, user.firstName, user.lastName)}, 
+                {userInformation: UserInformationEntity.getInstance(user.username, user.email, user.bio, user.firstName, user.lastName, user.imagePath)}, 
                 process.env.PK as Secret, {expiresIn: expires}, 
                 (error: Error | null, token: string | undefined) => {
                     if (!error && token) resolve(token);
@@ -53,9 +53,8 @@ export class AuthService {
     public static verifyToken(token: string): Promise<string> {
         return new Promise<any>((resolve, reject) => {
             verify(token, process.env.PK as Secret, (error: VerifyErrors | null, decodedToken: any) => {
-                if (decodedToken) resolve(decodedToken);
-                else if (error) reject(null);
-                reject(null);
+                if (decodedToken && !error) resolve(decodedToken);
+                else reject(null);
             });
         })
     }

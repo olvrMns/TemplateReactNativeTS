@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS user(
     firstName VARCHAR(50) NOT NULL,
     lastName VARCHAR(50) NOT NULL,
     pwd VARCHAR(1000) NOT NULL,
+    imagePath VARCHAR(100),
     active BOOLEAN DEFAULT 1,
     PRIMARY KEY (id)
 );
@@ -41,8 +42,8 @@ CREATE TABLE IF NOT EXISTS product(
 
 ALTER TABLE user_address ADD FOREIGN KEY (userId) REFERENCES user(id);
 
-INSERT INTO user(username, email, bio, firstName, lastName, pwd) VALUES ('testUser1', 'testUser1@gmail.com', 'AAAAAAHHHHH','test1', 'test1', '$2a$10$ZrRpkqJLWG9MxBLrRuoEb.AEyvh15TQJUO1j160Jv1MxD9FUI/lcW');
-INSERT INTO user(username, email, bio, firstName, lastName, pwd) VALUES ('testUser2', 'testUser2@gmail.com', 'AWFAOFNAFAWMFWALFNAWAWNFAWINFAI','test2', 'test2', '$2a$10$ZrRpkqJLWG9MxBLrRuoEb.AEyvh15TQJUO1j160Jv1MxD9FUI/lcW');
+INSERT INTO user(username, email, bio, firstName, lastName, pwd, imagePath) VALUES ('testUser1', 'testUser1@gmail.com', 'AAAAAAHHHHH','test1', 'test1', '$2a$10$ZrRpkqJLWG9MxBLrRuoEb.AEyvh15TQJUO1j160Jv1MxD9FUI/lcW', NULL);
+INSERT INTO user(username, email, bio, firstName, lastName, pwd, imagePath) VALUES ('testUser2', 'testUser2@gmail.com', 'AWFAOFNAFAWMFWALFNAWAWNFAWINFAI','test2', 'test2', '$2a$10$ZrRpkqJLWG9MxBLrRuoEb.AEyvh15TQJUO1j160Jv1MxD9FUI/lcW', NULL);
 
 INSERT INTO product (id, price, productName, rating, stock, active) VALUES (1, 94638.07, 'Chocolate Bar - Smarties', 0.88, 27, 0);
 INSERT INTO product (id, price, productName, rating, stock, active) VALUES (2, 75444.69, 'Red Pepper Paste', 4.36, 62, 1);

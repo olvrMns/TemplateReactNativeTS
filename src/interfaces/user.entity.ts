@@ -6,5 +6,6 @@ export interface User {
     bio: string,
     firstName: string,
     lastName: string,
+    imagePath: string | null,
     pwd: string
 }
