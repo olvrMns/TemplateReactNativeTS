@@ -6,13 +6,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeScreen } from './screens/home.screen';
 import { AboutScreen } from './screens/about.screen';
 import { DemoDBScreen } from './screens/demoDB.screen';
-import { LoginScreen } from './screens/login.screen';
+import { LoginSignupScreen } from './screens/loginSignup.screen';
 
 export type DrawerParams = {
   Home: undefined;
   About: undefined;
   DemoDB: undefined;
-  Login: undefined;
+  LoginSignup: undefined;
 }
 
 const Drawer = createDrawerNavigator<DrawerParams>();
@@ -22,7 +22,7 @@ export default class App extends Component<any, any, any> {
   render(): ReactNode {
       return(
           <NavigationContainer>
-            <Drawer.Navigator initialRouteName='Login' screenOptions={{
+            <Drawer.Navigator initialRouteName='LoginSignup' screenOptions={{
               drawerActiveBackgroundColor: "#3dad40",
               headerTintColor: "#5da6a4",
               headerStyle: {backgroundColor: "#2f7050"},
@@ -32,7 +32,7 @@ export default class App extends Component<any, any, any> {
               <Drawer.Screen name='Home' options={{title: "Home"}} component={HomeScreen}/>
               <Drawer.Screen name='About' options={{title: "About"}} component={AboutScreen}/>
               <Drawer.Screen name='DemoDB' options={{title: "DemoDB"}} component={DemoDBScreen}/>
-              <Drawer.Screen name='Login' options={{title: "Login"}} component={LoginScreen}/>
+              <Drawer.Screen name='LoginSignup' options={{title: "TEST_LoginSignup"}} component={LoginSignupScreen}/>
             </Drawer.Navigator>
           </NavigationContainer>
       )

@@ -5,4 +5,5 @@ export interface UserInformation {
     bio: string,
     firstName: string,
     lastName: string,
+    imagePath: string | null
 }

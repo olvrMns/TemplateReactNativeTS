@@ -17,17 +17,13 @@ export class Fetcher<T> {
     }
 
     private async getResponse(options: FetchOptions): Promise<any> {
-        try {
-            let res: AxiosResponse = await fetch({
-                data: options.body ? options.body : undefined,
-                baseURL: process.env.DATA_URL + EndpointsMetadata[options.endpoint].endpoint,
-                method: EndpointsMetadata[options.endpoint].method
-            });
-            return res.data;
-        } catch (err: unknown) {
-            console.log(err)
-            return null;
-        }
+        console.log(process.env.ADDR_BD + EndpointsMetadata[options.endpoint].endpoint)
+        let res: AxiosResponse = await fetch({
+            data: options.body ? options.body : undefined,
+            baseURL: process.env.ADDR_BD + EndpointsMetadata[options.endpoint].endpoint,
+            method: EndpointsMetadata[options.endpoint].method
+        });
+        return res.data;
     }
 
 }
