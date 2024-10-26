@@ -81,7 +81,7 @@ export class AuthService {
             decodedToken = await AuthService.verifyToken(acceptedAuthResponse.refreshToken);
             if (decodedToken !== null) {
                 acceptedAuthResponse = await AuthService.getAcceptedAuthResponse(decodedToken.userInformation);
-                stateResponse = {authenticated: false, acceptedAuthenticationResponse: await AuthService.getAcceptedAuthResponse(decodedToken.userInformation), userInformation: decodedToken.userInformation}
+                stateResponse = {authenticated: true, acceptedAuthenticationResponse: await AuthService.getAcceptedAuthResponse(decodedToken.userInformation), userInformation: decodedToken.userInformation}
             }
         }
         return stateResponse;

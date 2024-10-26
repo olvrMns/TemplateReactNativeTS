@@ -56,6 +56,7 @@ export class EntityInquisitor<T> {
     // }
 
     // public async getFirst(attributeName: string, value: string): Promise<T | null> {
+    //     let res: T[] = await this.getArrayFromQuery(query);
     //     return null;
     // }
 

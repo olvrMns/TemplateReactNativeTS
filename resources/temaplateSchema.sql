@@ -5,8 +5,8 @@ use templateDev;
 DROP TABLE IF EXISTS user;
 CREATE TABLE IF NOT EXISTS user(
     id INT AUTO_INCREMENT NOT NULL,
-    username VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT NULL,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
     bio TEXT(5000),
     firstName VARCHAR(50) NOT NULL,
     lastName VARCHAR(50) NOT NULL,
@@ -55,6 +55,3 @@ INSERT INTO product (id, price, productName, rating, stock, active) VALUES (7, 4
 INSERT INTO product (id, price, productName, rating, stock, active) VALUES (8, 74385.52, 'Wine - White, Cooking', 0.12, 99, 0);
 INSERT INTO product (id, price, productName, rating, stock, active) VALUES (9, 17167.31, 'Sprouts - Peppercress', 0.65, 64, 1);
 INSERT INTO product (id, price, productName, rating, stock, active) VALUES (10, 866.8, 'Soap - Pine Sol Floor Cleaner', 0.77, 80, 1);
-
-
-

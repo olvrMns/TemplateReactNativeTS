@@ -7,6 +7,7 @@ export class Queries {
     public static getUserByCustomAttribute: Query = Query.getInstance("select * from user where ? = '?';");
     public static getUserByCustomAttributeAndPwd: Query = Query.getInstance("select * from user where ? = '?' and pwd = '?';");
     public static getUsers: Query = Query.getInstance("select * from user;");
+    public static getAny: Query = Query.getInstance("select * from ? where ? = ?;");
 
 }
 
