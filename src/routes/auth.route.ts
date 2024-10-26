@@ -4,5 +4,5 @@ import { AuthController } from "../controllers/auth.controller";
 export const router: Router = Router();
 
 router.post("/login", AuthController.authenticate);
-router.get("/get-authentication-state", AuthController.validateAuthentication)
+router.post("/get-authentication-state", AuthController.validateAuthentication)
 router.post("/signup", AuthController.signup);
