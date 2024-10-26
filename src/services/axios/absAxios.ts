@@ -17,7 +17,6 @@ export class Fetcher<T> {
     }
 
     private async getResponse(options: FetchOptions): Promise<any> {
-        console.log(process.env.ADDR_BD + EndpointsMetadata[options.endpoint].endpoint)
         let res: AxiosResponse = await fetch({
             data: options.body ? options.body : undefined,
             baseURL: process.env.ADDR_BD + EndpointsMetadata[options.endpoint].endpoint,

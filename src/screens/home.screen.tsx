@@ -1,7 +1,8 @@
 import { Component, ReactNode } from "react";
 import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
+import { SecuredComponent } from "../services/securedComponent";
 
-export class HomeScreen extends Component<any, any, any> {
+export class HomeScreen extends SecuredComponent<any, any> {
 
     public onPress() {
         console.log("salut");

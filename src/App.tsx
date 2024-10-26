@@ -1,12 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { Component, ReactNode } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeScreen } from './screens/home.screen';
 import { AboutScreen } from './screens/about.screen';
 import { DemoDBScreen } from './screens/demoDB.screen';
 import { LoginSignupScreen } from './screens/loginSignup.screen';
+import { ApplicationStorage } from './services/storage/applicationStorate';
 
 export type DrawerParams = {
   Home: undefined;
@@ -16,6 +17,21 @@ export type DrawerParams = {
 }
 
 const Drawer = createDrawerNavigator<DrawerParams>();
+
+// class CustomDrawerContent extends Component<any, any> {
+
+//   render(): ReactNode {
+//       return(
+//         <DrawerContentScrollView>
+//           <DrawerItemList {...this.state, this.props.navigation, this.props.descriptors}/>
+//           <DrawerItem label="SignOut" onPress={async () => {
+//             await ApplicationStorage.clearAuthenticationTokens();
+//             this.props.navigation.navigate("LoginSignup");
+//           }}/>
+//         </DrawerContentScrollView>
+//       )
+//   }
+// }
 
 export default class App extends Component<any, any, any> {
   
@@ -27,6 +43,16 @@ export default class App extends Component<any, any, any> {
               headerTintColor: "#5da6a4",
               headerStyle: {backgroundColor: "#2f7050"},
               drawerStyle: {backgroundColor: "#73a65d"}
+            }} drawerContent={props => {
+              return (
+                <DrawerContentScrollView>
+                  <DrawerItemList {...props}/>
+                  <DrawerItem label="SignOut" onPress={async () => {
+                    await ApplicationStorage.clearAuthenticationTokens();
+                    this.props.navigation.navigate("LoginSignup");
+                  }}/>
+                </DrawerContentScrollView>
+              )
             }}>
 
               <Drawer.Screen name='Home' options={{title: "Home"}} component={HomeScreen}/>
